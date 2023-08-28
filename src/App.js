@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import AddEditUser from './components/AddEditUser';
+import UserList from './components/UserList';
 
 function App() {
+
+  const initUsers = [
+    {firstName: 'John', lastName: 'Doe', phone: '3455'},
+    {firstName: 'JohnDos', lastName: 'DoeDos', phone: '6789'}
+  ]
+
+  const [selectUser, setSelectUser] = useState(null)
+
+  const [users, setUsers] = useState(initUsers)
+
+  const addUser = user => {
+    setUsers([...users, user])
+  }
+
+  const editUser = (index,user) => {
+    const updatedUsers = [...users]
+    updatedUsers[index] = user
+    setUsers(updatedUsers)
+    setSelectUser(null)
+  }
+
+
+  console.log(selectUser);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+          <AddEditUser selectUser={selectUser}  addUser={addUser}
+            editUser={editUser}  />
+      </div>
+      <div>
+        <UserList users={users}  selectedUser={selectUser} setSelectedUser={setSelectUser}/>
+      </div>
     </div>
   );
 }

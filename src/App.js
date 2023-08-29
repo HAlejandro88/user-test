@@ -3,7 +3,7 @@ import './App.css';
 import AddEditUser from './components/AddEditUser';
 import UserList from './components/UserList';
 
-function App() {
+const App = () => {
 
   const initUsers = [
     {firstName: 'John', lastName: 'Doe', phone: '3455'},
@@ -25,6 +25,11 @@ function App() {
     setSelectUser(null)
   }
 
+  const removeUsers = (id) => {
+      const removeUser = users.filter((user,index) => index !== id )
+      setUsers(removeUser)
+  }
+
 
   console.log(selectUser);
 
@@ -36,7 +41,7 @@ function App() {
             editUser={editUser}  />
       </div>
       <div>
-        <UserList users={users}  selectedUser={selectUser} setSelectedUser={setSelectUser}/>
+        <UserList users={users}  selectedUser={selectUser} setSelectedUser={setSelectUser} removeUser={removeUsers}/>
       </div>
     </div>
   );

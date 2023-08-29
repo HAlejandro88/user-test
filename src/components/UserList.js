@@ -1,7 +1,7 @@
 
 
 
-const UserList = ({users, selectedUser, setSelectedUser}) => {
+const UserList = ({users, selectedUser, setSelectedUser, removeUser}) => {
 
     const  handleSelectUser = (index, user) => {
         setSelectedUser({
@@ -32,8 +32,8 @@ const UserList = ({users, selectedUser, setSelectedUser}) => {
                                 <td>{user.lastName}</td>
                                 <td>{user.phone}</td>
                                 <td>
-                                    <button onClick={(e) => handleSelectUser(index,user)}>Add</button>
-                                    <button>Cancel</button>
+                                    <button onClick={(e) => handleSelectUser(index,user)}>Edit</button>
+                                    <button onClick={(e) => removeUser(index)}>Delete</button>
                                 </td>
                             </tr>
                         ))

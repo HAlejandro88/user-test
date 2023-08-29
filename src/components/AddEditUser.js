@@ -18,7 +18,7 @@ const AddEditUser = ({selectUser, setSelectedUser, addUser, editUser}) => {
             setValues(selectUser)
         } else {
             setValues({
-                fisrtName: '',
+                firstName: '',
                 lastName: '',
                 phone: ''
             })
@@ -37,6 +37,23 @@ const AddEditUser = ({selectUser, setSelectedUser, addUser, editUser}) => {
         //setSelectedUser(null);
     }
 
+    const handleCancel = event => {
+        event.preventDefault();
+        if (selectUser) {
+            setValues({
+                firstName: selectUser.firstName,
+                lastName: selectUser.lastName,
+                phone: selectUser.phone
+            })
+        } else {
+            setValues({
+                firstName: '',
+                lastName: '',
+                phone: ''
+            })
+        }
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -44,6 +61,7 @@ const AddEditUser = ({selectUser, setSelectedUser, addUser, editUser}) => {
                 <input type="text" placeholder="Last Name" name="lastName" value={formValues.lastName} onChange={handleFormValues}/>
                 <input type="text" placeholder="phone" name="phone" value={formValues.phone} onChange={handleFormValues}/>
                 <button type="submit" >ADD/EDIT</button>
+                <button type="button" onClick={handleCancel}>CANCEL</button>
             </form>
         </div>
     )
